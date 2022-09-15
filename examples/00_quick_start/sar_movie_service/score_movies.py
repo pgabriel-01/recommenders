@@ -13,10 +13,11 @@ def init():
 # Called when a request is received
 def run(raw_data):
     # Get the input data as a numpy array
-    # data = np.array(json.loads(raw_data)['data'])
+    data = np.array(json.loads(raw_data)['data'])
     # Get a prediction from the model
-    # predictions = model.predict(data)
-    top_k = model.recommend_k_items(raw_data, top_k=10, remove_seen=True)
+    predictions = model.predict(data)
+    # top_k = model.recommend_k_items(raw_data, top_k=10, remove_seen=True)
     
     # Return the predictions as JSON
-    return json.dumps(top_k)
+    # return json.dumps(top_k)
+    return predictions.tolist()
